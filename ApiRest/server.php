@@ -27,7 +27,7 @@
     };
 
     /**
-     * SE definen los recursos
+     * Se definen los recursos
      */
     $bands = [
         1 => [
@@ -50,12 +50,24 @@
     ];
     
     header('Content-Type: application/json');
+
+    /**
+     * Se valida el id del recurso buscado
+     */
+    $resourceId = array_key_exists('resource_id', $_GET) ? $_GET['resource_id'] : '';
+
     /**
      * Genera respuesta asumiendo que el recurso es correcto
      */
     switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
         case 'GET':
-            echo json_encode($bands);
+            if (empty($resourceId)) {
+                echo json_encode($bands);
+            } else {
+                if (array_key_exists($resourceId, $bands)) {
+                    echo json_encode($bands[$resourceId]);
+                }
+            }
             break;
         case 'POST':
             break;
