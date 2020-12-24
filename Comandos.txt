@@ -26,4 +26,8 @@ curl http://localhost:8000/band/2
 //----Se inserta un dato
 curl -X "POST" http://localhost:8000/books -d "{ \"titulo\":\"Haggard\",\"id_song\": 3,\"id_genere\": 3}"
 
+	//----PUT
+//----Se reemplaza un dato
+curl -X "PUT" http://localhost:8000/band/1 -d "{ \"titulo\":\"Europe\",\"id_song\": 3,\"id_genere\": 3}"
+
 

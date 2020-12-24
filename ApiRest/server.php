@@ -61,10 +61,10 @@
      */
     switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
         case 'GET':
-            if (empty($resourceId)) {
+            if(empty($resourceId)) {
                 echo json_encode($bands);
             } else {
-                if (array_key_exists($resourceId, $bands)) {
+                if(array_key_exists($resourceId, $bands)) {
                     echo json_encode($bands[$resourceId]);
                 }
             }
@@ -77,13 +77,30 @@
              */
             $json = file_get_contents('php://input');
 
+            // Se obtiene el JSON, 
+            // Y se agrega a un nuevo elemento del array
             $bands[] = json_decode($json, true);
 
-            //echo array_keys($bands)[count($bands) - 1];
-
-            echo json_encode($bands);
+            // Se envia hacia la ultima parte del arreglo
+            echo array_keys($bands)[count($bands) - 1];
             break;
         case 'PUT':
+            /**
+             * Permitir que otras aplicaciones
+             * modifiquen recursos que hay en el servidor
+             * PUT / Reemplazo
+             */
+            // Se valida que el recurso exista
+            if(!empty($resourceId) && array_key_exists($resourceId, $bands)) {
+                // Se toma la entrada
+                $json = file_get_contents('php://input');
+
+                // Se agrega el JSON recibido a un nuevo elemento del array
+                $bands[$resourceId] = json_decode($json, true);
+
+                // Se retorna la coleccion modificada en formato JSON
+                echo json_encode($bands);
+            }
             break;
         case 'DELETE':
             break;
