@@ -37,4 +37,10 @@ curl -X "DELETE" http://localhost:8000/band/1
 	//----Auntenticacion HTTP
 curl http://nicholas:1234@localhost:8000/band
 
+	//-----Autenticacion HMAC
+php generate_hash.php 1
+
+//---- Se autentica
+curl http://localhost:8000/band -H "X-HASH":"c116af8405b676a1c3879797bba2cb21fea063b0" -H "X-UID":"1" -H "X-TIMESTAMP":"1608842978"
+
 
