@@ -51,3 +51,9 @@ curl http://localhost:8001 -X "POST" -H "X-Client-Id":"1" -H "X-SECRET":"Top Sec
 
 //-----Se hace una consulta con el token de autenticacion 
 curl http://localhost:8000/band -H "X-Token":"46bc97d4f385015f2de1a456e8d79ac0a44d0be1"
+
+//------------Manejo de errores (Cliente/Servidor) de un servicio REST
+php client.php http://localhost:8000/band
+
+//---------Cuando el id no existe
+client.php http://localhost:8000/band/5

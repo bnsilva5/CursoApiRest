@@ -8,7 +8,9 @@
     /**
      * Acces Tokens (Muy segura)
      */
-    if (!array_key_exists('HTTP_X_TOKEN', $_SERVER)) {
+    
+    /**if (!array_key_exists('HTTP_X_TOKEN', $_SERVER)) {
+        http_response_code(400);
         die;
     }
 
@@ -34,6 +36,7 @@
     if ($ret !== 'true') {
         die;
     }
+    */
     /**
      * Tipos de recursos disponibles
      */
@@ -52,6 +55,7 @@
      * Se valida si el recurso esta disponible
      */
     if (!in_array($resourceType, $allowedResourceTypes)) {
+        http_response_code(400);
         die;
     };
 
@@ -95,6 +99,11 @@
             } else {
                 if(array_key_exists($resourceId, $bands)) {
                     echo json_encode($bands[$resourceId]);
+                } else {
+                    /**
+                     * Manejo errores servidor
+                     */
+                    http_response_code(404);
                 }
             }
             break;
