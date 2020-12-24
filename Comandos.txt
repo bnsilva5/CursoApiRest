@@ -34,13 +34,20 @@ curl -X "PUT" http://localhost:8000/band/1 -d "{ \"titulo\":\"Europe\",\"id_song
 //----Se elimina un recurso
 curl -X "DELETE" http://localhost:8000/band/1
 
-	//----Auntenticacion HTTP
+	//----Auntenticacion HTTP (Baja)
 curl http://nicholas:1234@localhost:8000/band
 
-	//-----Autenticacion HMAC
+	//-----Autenticacion HMAC (Media)
 php generate_hash.php 1
 
 //---- Se autentica
 curl http://localhost:8000/band -H "X-HASH":"c116af8405b676a1c3879797bba2cb21fea063b0" -H "X-UID":"1" -H "X-TIMESTAMP":"1608842978"
 
+	//-----Autenticacion Access Tokens (Alta)
+php -S localhost:8001 auth_server.php
 
+//----Se genera el token en el servidor (auth_serve.php)
+curl http://localhost:8001 -X "POST" -H "X-Client-Id":"1" -H "X-SECRET":"Top Secret!"
+
+//-----Se hace una consulta con el token de autenticacion 
+curl http://localhost:8000/band -H "X-Token":"46bc97d4f385015f2de1a456e8d79ac0a44d0be1"
