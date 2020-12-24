@@ -1,0 +1,13 @@
+//--- Ejecuta un archivo php
+php consultaExterna.php
+
+//----Iniciar servidor local
+php -S localhost:8000 server.php
+
+//----Se conecta al servidor
+curl http://localhost:8000 -v
+
+//-----Envia parametros por url
+curl http://localhost:8000?resource_type=band -v
+
+
