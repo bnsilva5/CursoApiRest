@@ -103,6 +103,13 @@
             }
             break;
         case 'DELETE':
+            // Se valida que el recurso exista
+            if(!empty($resourceId) && array_key_exists($resourceId, $bands)) {
+                // Elimina el recurso
+                unset($bands[$resourceId]);
+            }
+
+            echo json_encode($bands);
             break;
     }
 
