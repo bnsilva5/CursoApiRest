@@ -3,8 +3,16 @@
     /**
      * Bases para crear un servicio REST
      * 
-     */
+    */
 
+    /**
+     * Autenticacion HTTP NO segura/ Ineficiente
+     */
+    $user = array_key_exists('PHP_AUTH_USER', $_SERVER) ? $_SERVER['PHP_AUTH_USER'] : '';
+    $pw = array_key_exists('PHP_AUTH_PW', $_SERVER) ? $_SERVER['PHP_AUTH_PW'] : '';
+    if ($user !== 'nicholas' || $pw !== '1234') {
+        die;
+    }
     /**
      * Tipos de recursos disponibles
      */
