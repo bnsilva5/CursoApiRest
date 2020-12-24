@@ -70,6 +70,18 @@
             }
             break;
         case 'POST':
+            /**
+             * Permite a otras aplicaciones que
+             * creen nuevos recursos al servidor propio
+             * através de una apiREST
+             */
+            $json = file_get_contents('php://input');
+
+            $bands[] = json_decode($json, true);
+
+            //echo array_keys($bands)[count($bands) - 1];
+
+            echo json_encode($bands);
             break;
         case 'PUT':
             break;

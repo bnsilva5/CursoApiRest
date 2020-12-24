@@ -7,7 +7,23 @@ php -S localhost:8000 server.php
 //----Se conecta al servidor
 curl http://localhost:8000 -v
 
+	//----GET
 //-----Envia parametros por url
 curl http://localhost:8000?resource_type=band -v
+
+//------Consulta con parametros y id
+curl "http://localhost:8000?resource_type=band&resource_id=1"
+
+	//--- Reescritura de URL - url amigables
+//-----Consulta a coleccion con archivo router.php
+curl http://localhost:8000/band
+
+//-----Consulta a recurso en particular con archivo router.php
+curl http://localhost:8000/band/2
+
+	//-----POST
+
+//----Se inserta un dato
+curl -X 'POST' http://localhost:8000/band -d '{"band": "New band", "id_song":3, "id_genere":3}'
 
 
