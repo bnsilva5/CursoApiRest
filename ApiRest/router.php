@@ -7,7 +7,6 @@
 
     if ( in_array( $_SERVER["REQUEST_URI"], ['/index.html', '/', ''] ) ) {
         echo file_get_contents( 'index.html' );
-    
         die;
     }
 

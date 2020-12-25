@@ -11,7 +11,7 @@
     <table id="bandsTable" class="table">
         <thead>
             <tr>
-                <th>Titulo</th>
+                <th>Banda</th>
                 <th>Id_Song</th>
                 <th>Id_Genero</th>
             </tr>
@@ -25,7 +25,7 @@
                 <hr/>
                 <table>
                     <tr>
-                        <td>Titulo:</td>
+                        <td>Banda:</td>
                         <td><input type="text" name="bandTitle" id="bandTitle"> </td>
                     </tr>
                     <tr>
@@ -69,5 +69,26 @@
     function addBand(band) {
         $('#bandsTable tr:last').after('<tr><td>' + band.band + '</td><td>' + band.id_song + '</td><td>' + band.id_genere + '</td></tr>');
     }
+
+    $('#bandSave').click(function() {
+        var newBand = {
+            'band': $('#bandTitle').val(),
+            'id_song': $('#bandSongId').val(),
+            'id_genere': $('#bandGenereId').val()
+        }
+
+        $('#messages').first('p').text('Guardando Banda...');
+        $('#messages').show();
+
+        $.ajax({
+            'url': 'http://localhost:8000/band',
+            'method': 'POST',
+            'data': JSON.stringify(newBand),
+            'success': function(data) {
+                $('#messages').hide(),
+                addBand(newBand);
+            }
+        });
+    })
     </script>
 </html>
