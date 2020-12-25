@@ -3,7 +3,13 @@
     /**
      * Reescritura de url
      * Exponer un recurso individual atraves de http GET
-     */
+    */
+
+    if ( in_array( $_SERVER["REQUEST_URI"], ['/index.html', '/', ''] ) ) {
+        echo file_get_contents( 'index.html' );
+    
+        die;
+    }
 
     /**
      *Arreglo para las coincidencias 
